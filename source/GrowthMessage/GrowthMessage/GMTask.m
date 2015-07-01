@@ -9,6 +9,16 @@
 #import "GMTask.h"
 #import "GBDateUtils.h"
 
+static NSString *const kGMTaskId = @"id";
+static NSString *const kGMTaskApplicationId = @"applicationId";
+static NSString *const kGMTaskName = @"name";
+static NSString *const kGMTaskDescription = @"description";
+static NSString *const kGMTaskAvailableFrom = @"availableFrom";
+static NSString *const kGMTasAvailableTo= @"availableTo";
+static NSString *const kGMTasDisabled= @"disabled";
+static NSString *const kGMCreated= @"created";
+static NSString *const kGMTasUpdated= @"updated";
+
 @implementation GMTask
 
 @synthesize id;
@@ -25,32 +35,32 @@
 
     self = [super init];
     if (self) {
-        if ([dictionary objectForKey:@"id"] && [dictionary objectForKey:@"id"] != [NSNull null]) {
-            self.id = [dictionary objectForKey:@"id"];
+        if ([dictionary objectForKey:kGMTaskId] && [dictionary objectForKey:kGMTaskId] != [NSNull null]) {
+            self.id = [dictionary objectForKey:kGMTaskId];
         }
-        if ([dictionary objectForKey:@"applicationId"] && [dictionary objectForKey:@"applicationId"] != [NSNull null]) {
-            self.applicationId = [dictionary objectForKey:@"applicationId"];
+        if ([dictionary objectForKey:kGMTaskApplicationId] && [dictionary objectForKey:kGMTaskApplicationId] != [NSNull null]) {
+            self.applicationId = [dictionary objectForKey:kGMTaskApplicationId];
         }
-        if ([dictionary objectForKey:@"name"] && [dictionary objectForKey:@"name"] != [NSNull null]) {
-            self.name = [dictionary objectForKey:@"name"];
+        if ([dictionary objectForKey:kGMTaskName] && [dictionary objectForKey:kGMTaskName] != [NSNull null]) {
+            self.name = [dictionary objectForKey:kGMTaskName];
         }
-        if ([dictionary objectForKey:@"description"] && [dictionary objectForKey:@"description"] != [NSNull null]) {
-            self.description = [dictionary objectForKey:@"description"];
+        if ([dictionary objectForKey:kGMTaskDescription] && [dictionary objectForKey:kGMTaskDescription] != [NSNull null]) {
+            self.description = [dictionary objectForKey:kGMTaskDescription];
         }
-        if ([dictionary objectForKey:@"availableFrom"] && [dictionary objectForKey:@"availableFrom"] != [NSNull null]) {
-            self.availableFrom = [dictionary objectForKey:@"availableFrom"];
+        if ([dictionary objectForKey:kGMTaskAvailableFrom] && [dictionary objectForKey:kGMTaskAvailableFrom] != [NSNull null]) {
+            self.availableFrom = [dictionary objectForKey:kGMTaskAvailableFrom];
         }
-        if ([dictionary objectForKey:@"availableTo"] && [dictionary objectForKey:@"availableTo"] != [NSNull null]) {
-            self.availableTo = [dictionary objectForKey:@"availableTo"];
+        if ([dictionary objectForKey:kGMTasAvailableTo] && [dictionary objectForKey:kGMTasAvailableTo] != [NSNull null]) {
+            self.availableTo = [dictionary objectForKey:kGMTasAvailableTo];
         }
-        if ([dictionary objectForKey:@"disabled"] && [dictionary objectForKey:@"disabled"] != [NSNull null]) {
-            self.disabled = [[dictionary objectForKey:@"disabled"] boolValue];
+        if ([dictionary objectForKey:kGMTasDisabled] && [dictionary objectForKey:kGMTasDisabled] != [NSNull null]) {
+            self.disabled = [[dictionary objectForKey:kGMTasDisabled] boolValue];
         }
-        if ([dictionary objectForKey:@"created"] && [dictionary objectForKey:@"created"] != [NSNull null]) {
-            self.created = [GBDateUtils dateWithDateTimeString:[dictionary objectForKey:@"created"]];
+        if ([dictionary objectForKey:kGMCreated] && [dictionary objectForKey:kGMCreated] != [NSNull null]) {
+            self.created = [GBDateUtils dateWithDateTimeString:[dictionary objectForKey:kGMCreated]];
         }
-        if ([dictionary objectForKey:@"updated"] && [dictionary objectForKey:@"updated"] != [NSNull null]) {
-            self.updated = [GBDateUtils dateWithDateTimeString:[dictionary objectForKey:@"updated"]];
+        if ([dictionary objectForKey:kGMTasUpdated] && [dictionary objectForKey:kGMTasUpdated] != [NSNull null]) {
+            self.updated = [GBDateUtils dateWithDateTimeString:[dictionary objectForKey:kGMTasUpdated]];
         }
     }
     return self;
@@ -63,47 +73,47 @@
 - (instancetype) initWithCoder:(NSCoder *)aDecoder {
     self = [super init];
     if (self) {
-        if ([aDecoder containsValueForKey:@"id"]) {
-            self.id = [aDecoder decodeObjectForKey:@"id"];
+        if ([aDecoder containsValueForKey:kGMTaskId]) {
+            self.id = [aDecoder decodeObjectForKey:kGMTaskId];
         }
-        if ([aDecoder containsValueForKey:@"applicationId"]) {
-            self.applicationId = [aDecoder decodeObjectForKey:@"applicationId"];
+        if ([aDecoder containsValueForKey:kGMTaskApplicationId]) {
+            self.applicationId = [aDecoder decodeObjectForKey:kGMTaskApplicationId];
         }
-        if ([aDecoder containsValueForKey:@"name"]) {
-            self.name = [aDecoder decodeObjectForKey:@"name"];
+        if ([aDecoder containsValueForKey:kGMTaskName]) {
+            self.name = [aDecoder decodeObjectForKey:kGMTaskName];
         }
-        if ([aDecoder containsValueForKey:@"description"]) {
-            self.description = [aDecoder decodeObjectForKey:@"description"];
+        if ([aDecoder containsValueForKey:kGMTaskDescription]) {
+            self.description = [aDecoder decodeObjectForKey:kGMTaskDescription];
         }
-        if ([aDecoder containsValueForKey:@"availableFrom"]) {
-            self.availableFrom = [aDecoder decodeObjectForKey:@"availableFrom"];
+        if ([aDecoder containsValueForKey:kGMTaskAvailableFrom]) {
+            self.availableFrom = [aDecoder decodeObjectForKey:kGMTaskAvailableFrom];
         }
-        if ([aDecoder containsValueForKey:@"availableTo"]) {
-            self.availableTo = [aDecoder decodeObjectForKey:@"availableTo"];
+        if ([aDecoder containsValueForKey:kGMTasAvailableTo]) {
+            self.availableTo = [aDecoder decodeObjectForKey:kGMTasAvailableTo];
         }
-        if ([aDecoder containsValueForKey:@"disabled"]) {
-            self.disabled = [aDecoder decodeBoolForKey:@"disabled"];
+        if ([aDecoder containsValueForKey:kGMTasDisabled]) {
+            self.disabled = [aDecoder decodeBoolForKey:kGMTasDisabled];
         }
-        if ([aDecoder containsValueForKey:@"created"]) {
-            self.created = [aDecoder decodeObjectForKey:@"created"];
+        if ([aDecoder containsValueForKey:kGMCreated]) {
+            self.created = [aDecoder decodeObjectForKey:kGMCreated];
         }
-        if ([aDecoder containsValueForKey:@"updated"]) {
-            self.updated = [aDecoder decodeObjectForKey:@"updated"];
+        if ([aDecoder containsValueForKey:kGMTasUpdated]) {
+            self.updated = [aDecoder decodeObjectForKey:kGMTasUpdated];
         }
     }
     return self;
 }
 
 - (void) encodeWithCoder:(NSCoder *)aCoder {
-    [aCoder encodeObject:id forKey:@"id"];
-    [aCoder encodeObject:applicationId forKey:@"applicationId"];
-    [aCoder encodeObject:name forKey:@"name"];
-    [aCoder encodeObject:description forKey:@"description"];
-    [aCoder encodeObject:availableFrom forKey:@"availableFrom"];
-    [aCoder encodeObject:availableTo forKey:@"availableTo"];
-    [aCoder encodeBool:disabled forKey:@"disabled"];
-    [aCoder encodeObject:created forKey:@"created"];
-    [aCoder encodeObject:updated forKey:@"updated"];
+    [aCoder encodeObject:id forKey:kGMTaskId];
+    [aCoder encodeObject:applicationId forKey:kGMTaskApplicationId];
+    [aCoder encodeObject:name forKey:kGMTaskName];
+    [aCoder encodeObject:description forKey:kGMTaskDescription];
+    [aCoder encodeObject:availableFrom forKey:kGMTaskAvailableFrom];
+    [aCoder encodeObject:availableTo forKey:kGMTasAvailableTo];
+    [aCoder encodeBool:disabled forKey:kGMTasDisabled];
+    [aCoder encodeObject:created forKey:kGMCreated];
+    [aCoder encodeObject:updated forKey:kGMTasUpdated];
 }
 
 @end
