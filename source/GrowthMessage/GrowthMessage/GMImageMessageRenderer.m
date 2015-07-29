@@ -126,7 +126,7 @@ static NSTimeInterval const kGMImageMessageRendererImageDownloadTimeout = 10;
         [self showImageWithView:baseView rect:rect ratio:ratio];
         [self showScreenButtonWithView:baseView rect:rect ratio:ratio];
         [self showImageButtonsWithView:baseView rect:rect ratio:ratio];
-        [self showCloseButtonWithView:baseView rect:rect ratio:ratio];
+        [self showCloseButtonWithView:baseView screenWidth:screenWidth screenHeight:screenHeight rect:rect];
 
         self.activityIndicatorView.hidden = YES;
 
@@ -190,28 +190,32 @@ static NSTimeInterval const kGMImageMessageRendererImageDownloadTimeout = 10;
 
 }
 
-- (void) showCloseButtonWithView:(UIView *)view rect:(CGRect)rect ratio:(CGFloat)ratio {
-
+- (void) showCloseButtonWithView:(UIView *)view screenWidth:(CGFloat)screenWidth screenHeight:(CGFloat)screenHeight rect:(CGRect)rect {
+    
     GMCloseButton *closeButton = [[self extractButtonsWithType:GMButtonTypeClose] lastObject];
-
+    
     if (!closeButton) {
         return;
     }
-
+    
+    CGFloat availableWidth = MIN(closeButton.picture.width, 20);
+    CGFloat availableHeight = MIN(closeButton.picture.height, 20);
+    CGFloat ratio = MIN(availableWidth / closeButton.picture.width, availableHeight / closeButton.picture.height);
+    
     CGFloat width = closeButton.picture.width * ratio;
     CGFloat height = closeButton.picture.height * ratio;
     CGFloat left = rect.origin.x + rect.size.width - width / 2;
     CGFloat top = rect.origin.y - height / 2;
-
+    
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     [button setImage:[cachedImages objectForKey:closeButton.picture.url] forState:UIControlStateNormal];
     button.contentMode = UIViewContentModeScaleAspectFit;
     button.frame = CGRectMake(left, top, width, height);
     [button addTarget:self action:@selector(tapButton:) forControlEvents:UIControlEventTouchUpInside];
     [view addSubview:button];
-
+    
     [boundButtons setObject:closeButton forKey:[NSValue valueWithNonretainedObject:button]];
-
+    
 }
 
 - (NSArray *) extractButtonsWithType:(GMButtonType)type {
