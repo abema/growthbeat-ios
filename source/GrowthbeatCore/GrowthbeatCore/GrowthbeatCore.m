@@ -104,7 +104,7 @@ static NSString *const kGBPreferenceDefaultFileName = @"growthbeat-preferences";
         
         if (gpClient) {
             gpClient = [GBGPClient findWithGPClientId:gpClient.id code:gpClient.code];
-                        [self.logger info:@"convert client... (GrowthPushClientId:%d, GrowthbeatClientId:%@)", gpClient.id, gpClient.growthbeatClientId];
+                        [self.logger info:@"Convert GrowthPush Client into Growthbeat Client. (GrowthPushClientId:%d, GrowthbeatClientId:%@)", gpClient.id, gpClient.growthbeatClientId];
             
             self.client = [GBClient findWithId:gpClient.growthbeatClientId credentialId:credentialId];
             if (!self.client || ![self.client.application.id isEqualToString:applicationId]) {
